@@ -7,7 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { Button, Container } from '@material-ui/core';
+import { Button, Container, Grid } from '@material-ui/core';
 import { tasks } from '../../data/tasks';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import EditIcon from '@material-ui/icons/Edit';
@@ -33,9 +33,15 @@ export default function TasksTable() {
 
   return (
     <Container maxWidth="lg">
-      <Sort/>
-      <Filter/>
-    <TableContainer component={Paper} style={{marginTop: "6rem"}}>
+      <Grid container spacing={10} justify="center">
+        <Grid item xs={12} sm={6} md={5} lg={4}>
+          <Sort/>
+        </Grid>
+        <Grid item xs={12} sm={6} md={5} lg={4}>
+          <Filter/>
+        </Grid>
+      </Grid>
+    <TableContainer component={Paper} style={{marginTop: "4rem"}}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>

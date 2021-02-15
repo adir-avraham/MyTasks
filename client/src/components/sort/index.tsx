@@ -21,9 +21,6 @@ export default function Sort() {
   const classes = useStyles();
   return (
     <form noValidate autoComplete="off">
-    <Grid container spacing={3} justify="center">
-
-      <Grid item xs={12} sm={6} md={4} lg={2}>
       <FormControl variant="outlined" fullWidth>
         <InputLabel htmlFor="outlined-age-native-simple">מיון לפי</InputLabel>
         <Select
@@ -40,8 +37,6 @@ export default function Sort() {
           <MenuItem  value={"שם תיק"}>שם תיק</MenuItem >
         </Select>
       </FormControl>
-      </Grid>
-        </Grid>
         </form>
   );
 }
