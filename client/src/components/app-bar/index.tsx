@@ -33,7 +33,7 @@ export default function TasksBar() {
          
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            משימות
+            תיקים
           </Typography>
           <Button color="inherit">Login</Button>
         </Toolbar>

@@ -5,7 +5,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const getTasks = require('./routes/tasks');
+const getCases = require('./routes/cases');
 
 
 
@@ -13,7 +13,7 @@ const getTasks = require('./routes/tasks');
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use('/tasks', getTasks);
+app.use('/cases', getCases);
 
 
 
