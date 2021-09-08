@@ -1,4 +1,4 @@
-import Actions from './actions.config';
+import { Actions } from './actions.config';
 import { Action } from '../sharing-interfaces';
 
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,11 +7,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { Button, Container, Grid } from '@material-ui/core';
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-import EditIcon from '@material-ui/icons/Edit';
-import Sort from '../sort';
-import Filter from '../filter';
 import { getCasesAction } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { State } from '../../sharing-interfaces';
@@ -43,6 +38,7 @@ export default function CasesTable() {
 
     <TableContainer component={Paper} style={{marginTop: "4rem"}}>
       <Table aria-label="simple table">
+      <caption>סה"כ תיקים: {cases.length}</caption>
         <TableHead>
           <TableRow>
             <TableCell className={classes.head}>שם תיק</TableCell>
@@ -55,11 +51,11 @@ export default function CasesTable() {
           {cases.map((item: any) => (
             <TableRow key={item.Id}>
               <TableCell align="left" component="th" scope="row">
-                {item.case}
+                {item.case_name}
               </TableCell>
               <TableCell>{item.tasks}</TableCell>
 
-              <TableCell>{item.meeting}</TableCell>
+              <TableCell>{item.next_sitting}</TableCell>
               <TableCell>
                 {item.status}
               </TableCell>

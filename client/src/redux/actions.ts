@@ -1,4 +1,4 @@
-import Actions from './actions.config';
+import { Actions } from './actions.config';
 import { getCasesService } from './service';
 import { Case } from '../sharing-interfaces';
 

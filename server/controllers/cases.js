@@ -1,5 +1,4 @@
-const casesData = require('../data-mysql/data-access/cases');
-
+const casesData = require('../data-mysql/data-providers/cases');
 
 
 exports.getCases = async (req, res, next) => {
@@ -11,3 +10,15 @@ exports.getCases = async (req, res, next) => {
         res.json({error: error.message, status: false});
     }
 };
+
+exports.addNewCase = async (req, res, next) => {
+    try {
+        const { addNewCase, getCases } = casesData;
+        const newCase = await addNewCase(req.body); 
+        const cases = await getCases();
+        return res.json({updatedCases: cases, status: true});
+    } catch (error) {
+        res.json({error: error.message, status: false});
+    }
+
+}

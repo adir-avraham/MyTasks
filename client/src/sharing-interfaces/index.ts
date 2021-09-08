@@ -11,8 +11,8 @@ export interface State {
 
 export interface Case {
     id: number;
-    case: string;
+    case_name: string;
     tasks: string;
-    meeting: Date;
+    next_sitting: Date;
     status: string;
 }

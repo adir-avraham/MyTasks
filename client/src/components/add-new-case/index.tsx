@@ -4,11 +4,16 @@ import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { Grid } from '@material-ui/core';
+import useCustomForm from '../../hooks/useCustomForm';
+import axios from 'axios';
+import { baseUrl } from '../../redux/service';
+import { getCasesAction } from '../../redux/actions';
+import { useDispatch } from 'react-redux';
+
 
 export default function AddCase() {
+  const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -17,6 +22,29 @@ export default function AddCase() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const initialState = {
+    case_name: "",
+    tasks: "",
+    next_sitting: null,
+
+  }
+  const [data, handleChange] = useCustomForm(initialState); 
+
+  const handleAddNewCase = async (data: any) => {
+    try {
+      console.log(data)
+      const result = await axios.post(`${baseUrl}/cases/addNewCase`, data);
+      const { status } = result.data;
+ 
+      if (status) {
+        dispatch(getCasesAction());
+        handleClose()
+      } 
+      } catch  {
+      console.log("some error from add new case component");
+    };
   };
 
   return (
@@ -36,10 +64,12 @@ export default function AddCase() {
             <p>שם תיק</p>
             <TextField 
               id="outlined-basic" 
+              name="case_name"
               type="text"
               fullWidth
               variant="outlined" 
               size="small"
+              onChange={handleChange}
             />
             </div>
           
@@ -47,13 +77,14 @@ export default function AddCase() {
             <p>משימות</p>
             <TextField 
               id="outlined-basic" 
-             
+              name="tasks"
               type="text"
               fullWidth
               multiline
               rows={4}
               variant="outlined" 
               size="small"
+              onChange={handleChange}
               />
           </div>
           
@@ -61,7 +92,7 @@ export default function AddCase() {
           <p>מועד דיון</p>
             <TextField
               id="date"
- 
+              name="next_sitting"
               fullWidth
               type="date"
               InputLabelProps={{
@@ -69,6 +100,7 @@ export default function AddCase() {
               }} 
               variant="outlined" 
               size="small"  
+              onChange={handleChange}
               />
           </div>
           
@@ -86,7 +118,7 @@ export default function AddCase() {
           <Button onClick={handleClose}  variant="contained" >
             בטל
           </Button>
-          <Button onClick={handleClose} color="primary" variant="contained">
+          <Button onClick={()=>{handleAddNewCase(data)}} color="primary" variant="contained">
             שמור
           </Button>
         </DialogActions>

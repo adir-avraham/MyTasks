@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const getCases = require('./routes/cases');
-
+const addNewCase = require('./routes/cases');
 
 
 //checkEnvParams(["PORT", "HOST", "DB_PORT", "PASSWORD", "DATABASE"]);
@@ -14,7 +14,7 @@ const getCases = require('./routes/cases');
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/cases', getCases);
-
+app.use('/cases', addNewCase);
 
 
 
